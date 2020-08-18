@@ -1,8 +1,6 @@
 var app = require('express').Router();
 const controller = require('./controller');
-app.route('/').get((req, res) => {
-  res.send('this is work');
-});
+
 app.route('/logIn').post(controller.logIn);
 app.route('/SignUp').post(controller.SignUp);
 app.route('/addItems').post(controller.AddItems);
