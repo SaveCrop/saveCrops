@@ -1,0 +1,72 @@
+.rendeElments {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 20px;
+}
+.ShowTransication {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 20px;
+}
+.editEle {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 20px;
+}
+.sortItem {
+  display: flex;
+  width: 300px;
+  margin: 70px;
+  justify-items: center;
+  align-items: center;
+}
+.btn btn-info {
+  align-items: center;
+  margin-left: 50%;
+}
+#inputGroupSelect04 {
+  /* width: 20vh !important; */
+  margin: 0 auto;
+  height: 35px;
+  display: block;
+}
+.btn-info {
+  height: 35px;
+}
+.sortItem {
+  display: flex;
+  width: 300px;
+  margin: 70px;
+  justify-items: center;
+  align-items: center;
+  margin: 30px auto;
+}
+.input[type='text'],
+select,
+textarea {
+  width: 25%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+.card1 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  padding: 5px;
+}
+
+.item1 {
+  color: #61dafb;
+}
