@@ -1,3 +1,4 @@
 module.exports = {
-  mongoURI: 'mongodb://localhost:27017/Farmers',
+  mongoURI:
+    'mongodb+srv://abedsamhadana:abd2854492@savecrap.ycfld.mongodb.net/Farmers?retryWrites=true&w=majority',
 };

@@ -1,18 +1,53 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 // React.Bootstrap = require('react-bootstrap');
 // React.Bootstrap.Select = require('react-bootstrap-select');
-var AboutUs = () => {
-  var alertClicked = (e) => {
-    console.log(e.target);
-  };
-  return (
-    <div>
-      <p>Search icon on a styled button:</p>
-      <button type='button' class='btn btn-info'>
-        <span class='glyphicon glyphicon-search'></span> Search
-      </button>
-    </div>
-  );
-};
-export default AboutUs;
+export default class AboutUs extends Component {
+  render() {
+    return (
+      <div className='about'>
+        <form>
+          <h3>Sign In</h3>
+
+          <div className='form-group'>
+            <label>Email address</label>
+            <input
+              type='email'
+              className='form-control'
+              placeholder='Enter email'
+            />
+          </div>
+
+          <div className='form-group'>
+            <label>Password</label>
+            <input
+              type='password'
+              className='form-control'
+              placeholder='Enter password'
+            />
+          </div>
+
+          <div className='form-group'>
+            <div className='custom-control custom-checkbox'>
+              <input
+                type='checkbox'
+                className='custom-control-input'
+                id='customCheck1'
+              />
+              <label className='custom-control-label' htmlFor='customCheck1'>
+                Remember me
+              </label>
+            </div>
+          </div>
+
+          <button type='submit' className='btn btn-primary btn-block'>
+            Submit
+          </button>
+          <p className='forgot-password text-right'>
+            Forgot <a href='#'>password?</a>
+          </p>
+        </form>
+      </div>
+    );
+  }
+}

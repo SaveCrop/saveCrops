@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,14 @@
 #inputGroupSelect04 {
   width: 5px;
   height: 10px;
+} */
+/* body {
+  background: #6b6e70 !important;
+  min-height: 100vh;
+  display: flex;
+  font-weight: 400;
+  font-family: 'Fira Sans', sans-serif;
+} */
+.App {
+  margin: 30px;
 }

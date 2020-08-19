@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import swal from 'sweetalert';
+
 class AddItem extends React.Component {
   state = {
     type: '',
@@ -16,29 +18,37 @@ class AddItem extends React.Component {
   };
   submitValues = (e) => {
     e.preventDefault();
-    // this.setState({
-    //   phoneNumber: localStorage.getItem('phoneNumber'),
-    // });
-    // console.log('hhdahsdsadsadsadsa', localStorage.getItem('phoneNumber'));
-    var phoneNumbers = localStorage.getItem('phoneNumber');
+    if (
+      this.state.type.length == 0 ||
+      this.state.type.quantitey == 0 ||
+      this.state.type.price == 0
+    ) {
+      swal('Hello world!');
+    } else {
+      // this.setState({
+      //   phoneNumber: localStorage.getItem('phoneNumber'),
+      // });
+      // console.log('hhdahsdsadsadsadsa', localStorage.getItem('phoneNumber'));
+      var phoneNumbers = localStorage.getItem('phoneNumber');
 
-    axios
-      .post('/addItems', {
-        type: this.state.type,
-        quantitey: this.state.quantitey,
-        date: this.state.date,
-        price: this.state.price,
-        ID_Phone: phoneNumbers,
-        sell: this.state.sell,
-      })
+      axios
+        .post('/addItems', {
+          type: this.state.type,
+          quantitey: this.state.quantitey,
+          date: this.state.date,
+          price: this.state.price,
+          ID_Phone: phoneNumbers,
+          sell: this.state.sell,
+        })
 
-      .then((result) => {
-        console.log('response from server in AddItems ! ', result);
-      })
-      .catch((error) => {
-        console.log('error from server that requsted via add items ', error);
-      });
-    // console.log('hhdahsdsadsadsadsa', localStorage.getItem('phoneNumber'));
+        .then((result) => {
+          console.log('response from server in AddItems ! ', result);
+        })
+        .catch((error) => {
+          console.log('error from server that requsted via add items ', error);
+        });
+      // console.log('hhdahsdsadsadsadsa', localStorage.getItem('phoneNumber'));
+    }
   };
   render() {
     return (
