@@ -1,14 +1,16 @@
 import React from 'react';
 import axios from 'axios';
-import Button from '@material-ui/core/Button';
 import '../land/land.css';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import '../AddItem/addItems.css';
 
 class EditItem extends React.Component {
   state = {
     type: '',
-    quantitey: 0,
-    date: 0,
-    price: 0,
+    quantitey: '',
+    date: '',
+    price: '',
     sell: false,
     id_Item: this.props.match.params.id,
   };
@@ -28,35 +30,78 @@ class EditItem extends React.Component {
       sell: false,
       id_Item: this.props.match.params.id,
     });
+    this.setState({
+      type: '',
+      quantitey: '',
+      date: '',
+      price: '',
+      sell: false,
+    });
   };
-
+  componentDidMount() {
+    axios
+      .post('/getbeforeEdit', {
+        id_Item: this.props.match.params.id,
+      })
+      .then((result) => {
+        // console.log(result.data[0], 'the data coming from edit items');
+        this.setState({
+          type: result.data[0].type,
+          quantitey: result.data[0].quantitey,
+          date: result.data[0].date,
+          price: result.data[0].price,
+        });
+      });
+  }
   render() {
-    console.log(this.state);
     return (
-      <div className='editEle'>
-        <form onSubmit={this.submitValues}>
-          name of product:{' '}
-          <input type='text' name='type' onChange={this.handelChange}></input>{' '}
+      <div className='addItems'>
+        <h1>Edit products</h1>
+        <Form.Group>
+          <Form.Label className='label'>Edit/old products </Form.Label>
+          <Form.Control
+            size='lg'
+            type='text'
+            placeholder='Name product'
+            onChange={this.handelChange}
+            name='type'
+            value={this.state.type}
+          />
           <br />
-          Quantitey:
-          <input
+          <Form.Label className='label'>Edit/old Quantitey </Form.Label>
+          <Form.Control
+            size='lg'
             type='number'
+            placeholder='Total of Quantitey'
+            onChange={this.handelChange}
             name='quantitey'
+            value={this.state.quantitey}
+          />{' '}
+          <br />
+          <Form.Label className='label'>Edit old Date </Form.Label>
+          <Form.Control
+            size='lg'
+            type='date'
+            placeholder=' Date'
             onChange={this.handelChange}
-          ></input>
+            name='date'
+            value={this.state.date}
+          />{' '}
           <br />
-          Date:
-          <input type='date' name='date' onChange={this.handelChange}></input>
-          <br />
-          price/Units
-          <input
+          <Form.Label className='label'>Edit old price </Form.Label>
+          <Form.Control
+            size='lg'
             type='number'
-            name='price'
+            placeholder='price'
             onChange={this.handelChange}
-          ></input>
+            name='price'
+            value={this.state.price}
+          />{' '}
           <br />
-          <input type='submit'></input>
-        </form>
+          <Button variant='primary' type='submit' onClick={this.submitValues}>
+            Submit
+          </Button>
+        </Form.Group>
       </div>
     );
   }

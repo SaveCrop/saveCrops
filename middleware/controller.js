@@ -287,3 +287,17 @@ exports.GetName = (req, res) => {
     res.send(result);
   });
 };
+exports.GetbeforeEdit = (req, res) => {
+  const { id_Item } = req.body;
+  Item.find({ _id: id_Item })
+    .then((result) => {
+      // console.log(result, 'the data coming from search');
+      res.send(result);
+    })
+    .catch((error) => {
+      console.log(
+        error,
+        'the error coming from get the data from item to e efited '
+      );
+    });
+};

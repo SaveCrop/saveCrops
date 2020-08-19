@@ -17,5 +17,6 @@ app.route('/postDatainOrder').post(controller.AddToOrder);
 // app.route('/getcards').post(controller.Getcards);
 app.route('/getcards').post(controller.Getcards);
 app.route('/getName').post(controller.GetName);
+app.route('/getbeforeEdit').post(controller.GetbeforeEdit);
 
 module.exports = app;
