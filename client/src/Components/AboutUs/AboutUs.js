@@ -7,11 +7,10 @@ import Button from 'react-bootstrap/Button';
 // React.Bootstrap.Select = require('react-bootstrap-select');
 export default class AboutUs extends Component {
   state = {
-    type: '',
-    quantitey: 0,
-    date: 0,
-    price: 0,
-    sell: false,
+    name: '',
+    phoneNumber: 0,
+    role: '',
+    password: 0,
   };
   handelChange = (e) => {
     e.preventDefault();
@@ -19,54 +18,60 @@ export default class AboutUs extends Component {
       [e.target.name]: e.target.value,
     });
   };
+  registerData = (e) => {
+    e.preventDefault();
+  };
 
   render() {
+    console.log(this.state);
     return (
       <div className='addItem'>
-        <h1>Add products</h1>
+        <h1>ٍSign Up</h1>
         <Form.Group>
-          <Form.Label>Enter products </Form.Label>
+          <Form.Label>Fisrt and last name </Form.Label>
           <Form.Control
             size='lg'
             type='text'
-            placeholder='Name product'
+            placeholder='name'
             onChange={this.handelChange}
-            name='type'
+            name='name'
           />
           <br />
-          <Form.Label>Enter Quantitey </Form.Label>
+          <Form.Label>Enter phoneNumber</Form.Label>
           <Form.Control
             size='lg'
             type='number'
-            placeholder='Total of Quantitey'
+            placeholder='phoneNumber'
             onChange={this.handelChange}
-            name='quantitey'
+            name='phoneNumber'
           />{' '}
           <br />
-          <Form.Label>Enter the Date </Form.Label>
-          <Form.Control
-            size='lg'
-            type='date'
-            placeholder=' Date'
-            onChange={this.handelChange}
-            name='date'
-          />{' '}
+          <Form.Label>Enter As farmer /User </Form.Label>
+          <select selected onChange={this.handelChange} name='role'>
+            <option value='role'>role</option>
+            <option value='farmer'>Farmers</option>
+            <option value='user'>User</option>
+          </select>
           <br />
-          <Form.Label>Enter the price </Form.Label>
+          <br />
+          <Form.Label>Enter the password </Form.Label>
           <Form.Control
             size='lg'
             type='number'
-            placeholder='price'
+            placeholder='password'
             onChange={this.handelChange}
-            name='date'
+            name='password'
           />{' '}
+          {/* <select>
+            <option value='ads'>value</option>
+          </select> */}
           <br />
-          <Button variant='primary' type='submit' onClick={this.submitValues}>
+          <Button variant='primary' type='submit' onClick={this.registerData}>
             Submit
           </Button>
         </Form.Group>
 
-        <form>
+        {/* <form>
           <h3>Sign In</h3>
 
           <div className='form-group'>
@@ -74,7 +79,7 @@ export default class AboutUs extends Component {
             <input
               type='email'
               className='form-control'
-              placeholder='Enter email'
+              placeholder='Enter phone Number'
             />
           </div>
 
@@ -106,7 +111,7 @@ export default class AboutUs extends Component {
           <p className='forgot-password text-right'>
             Forgot <a href='#'>password?</a>
           </p>
-        </form>
+        </form> */}
       </div>
     );
   }

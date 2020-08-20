@@ -40,7 +40,7 @@ function ControlledCarousel() {
       <Carousel.Item>
         <img
           className='d-block w-100'
-          src='https://t4.ftcdn.net/jpg/01/14/79/01/240_F_114790121_7jY6bWBqDMg6yCFxLjfwj44nQENQQYkN.jpg'
+          src='https://images.unsplash.com/photo-1484557985045-edf25e08da73?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80'
           alt='Third slide'
           width='1920'
           height='600'

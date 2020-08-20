@@ -4,6 +4,8 @@ import { timers, data } from 'jquery';
 import Button from '@material-ui/core/Button';
 import '../land/land.css';
 import ControlledCarousel from '../slider/Slider';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
 
 class Land extends React.Component {
   state = {
@@ -111,7 +113,7 @@ class Land extends React.Component {
     console.log(this.state);
   };
 
-  ////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////Search DAta ///////////////////////////////////
   handelInput = (e) => {
     var curentType = e.target.value;
     this.setState({
@@ -134,8 +136,10 @@ class Land extends React.Component {
         console.log(e);
       });
   };
+  ///////////////////////////////////////Search data ///////////////////////////////
 
   render() {
+    console.log(this.state);
     return (
       <div>
         <ControlledCarousel />
@@ -160,12 +164,21 @@ class Land extends React.Component {
           </div>
         </div>
 
-        <div>
-          <form onSubmit={this.searchData}>
-            <input type='text' onChange={this.handelInput} />
-            <br />
-            <input type='submit' value='search' />
-          </form>
+        <div className='searchData'>
+          <InputGroup className='mb-3'>
+            <FormControl
+              className='a'
+              onChange={this.handelInput}
+              placeholder="Recipient's username"
+              aria-label="Recipient's username"
+              aria-describedby='basic-addon2'
+            />
+            <InputGroup.Append>
+              <Button variant='outline-secondary' onClick={this.searchData}>
+                Search
+              </Button>
+            </InputGroup.Append>
+          </InputGroup>
         </div>
         <div className='rendeElments'>
           {this.state.ele.map((element, index) => {

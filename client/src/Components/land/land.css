@@ -70,3 +70,10 @@ textarea {
 .item1 {
   color: #61dafb;
 }
+.searchData {
+  width: 30%;
+  margin: 0 auto;
+}
+.a {
+  width: 50px !important ;
+}

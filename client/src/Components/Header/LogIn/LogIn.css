@@ -1,0 +1,11 @@
+.login {
+  background-image: url('./img.png');
+  width: 80%;
+  margin: auto;
+  background-size: 800px 600px;
+  background-image: cover;
+}
+body,
+html {
+  height: 100%;
+}
