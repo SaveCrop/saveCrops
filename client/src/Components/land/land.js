@@ -1,11 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 import { timers, data } from 'jquery';
-import Button from '@material-ui/core/Button';
 import '../land/land.css';
 import ControlledCarousel from '../slider/Slider';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import CardGroup from 'react-bootstrap/CardGroup';
+import Footer from '../Header/Footer/Footer';
 
 class Land extends React.Component {
   state = {
@@ -19,24 +22,34 @@ class Land extends React.Component {
     return inputs;
   };
 
-  click = async (e) => {
+  click = (e) => {
     var currentId = e.target.id;
-    var index = 0;
-    var cur = this.getInput();
-
-    for (var i = 0; i < cur.length; ++i) {
-      if (cur[i].id == currentId) {
-        index = i;
-      }
-    }
-
-    var itemsDelete = this.state.ele;
-    itemsDelete.splice(index, 1);
-    this.setState({
-      ele: itemsDelete,
+    var itemsNotDeleted = this.state.ele.filter((e) => {
+      return e._id !== currentId;
     });
+    this.setState({
+      ele: itemsNotDeleted,
+    });
+    // console.log(currentId, 'curennnnnet');
+    // var index = 0;
+    // var cur = this.getInput();
+    // console.log(cur.length);
 
-    await axios
+    // for (var i = 0; i < cur.length; ++i) {
+    //   if (cur[i].id === currentId) {
+    //     index = i;
+    //     console.log(index);
+    //   }
+    // }
+
+    // var itemsDelete = this.state.ele;
+    // itemsDelete.splice(index, 1);
+    // console.log(index, 'indexxxxxxxxxxx');
+    // this.setState({
+    //   ele: itemsDelete,
+    // });
+    console.log(currentId, 'current id when targeted');
+    axios
       .post('/upDate', {
         sell: true,
         _id: currentId,
@@ -119,22 +132,33 @@ class Land extends React.Component {
     this.setState({
       curentType: curentType,
     });
+    //
+    var fi = this.state.ele.filter((e) => {
+      return e.type === curentType;
+    });
+    this.setState({
+      filter: fi,
+    });
   };
   searchData = (e) => {
     e.preventDefault();
-    axios
-      .post('/filter', {
-        sell: false,
-        curentType: this.state.curentType,
-      })
-      .then((e) => {
-        this.setState({
-          ele: e.data,
-        });
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    this.setState({
+      ele: this.state.filter,
+    });
+
+    // axios
+    //   .post('/filter', {
+    //     sell: false,
+    //     curentType: this.state.curentType,
+    //   })
+    //   .then((e) => {
+    //     this.setState({
+    //       ele: e.data,
+    //     });
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //   });
   };
   ///////////////////////////////////////Search data ///////////////////////////////
 
@@ -174,38 +198,52 @@ class Land extends React.Component {
               aria-describedby='basic-addon2'
             />
             <InputGroup.Append>
-              <Button variant='outline-secondary' onClick={this.searchData}>
+              <Button
+                variant='outline-secondary'
+                onClick={this.searchData}
+                style={{ marginBottom: '60px' }}
+              >
                 Search
               </Button>
             </InputGroup.Append>
           </InputGroup>
         </div>
-        <div className='rendeElments'>
-          {this.state.ele.map((element, index) => {
-            return (
-              <div class='card1' width='20rem'>
-                <div className='item1 '>
-                  {' '}
-                  Type: {element.type}
-                  <br />
-                  quantitey: {element.quantitey}
-                  <br />
-                  date: {element.date}
-                  <br />
-                  price: {element.price + '$'}
-                  <br />
-                  <button
-                    type='button'
-                    class='btn btn-success'
-                    id={element._id}
-                    onClick={this.click}
-                  >
-                    AddToCart
-                  </button>
+        <h1 style={{ marginBottom: '70px' }}>Our Products </h1>
+        <div style={{ marginLeft: '100px' }}>
+          <CardGroup>
+            {this.state.ele.map((element, index) => {
+              return (
+                <div className='addItem' style={{ margin: '10px' }}>
+                  <Card style={{ width: '20rem' }}>
+                    <Card.Img variant='top' src={element.imageUrl} />
+                    <Card.Body>
+                      <Card.Title> Product Name :{element.type}</Card.Title>
+                      <Card.Text>
+                        Quantitey is :{element.quantitey}
+                        <b>Kg</b>
+                      </Card.Text>
+                      <Card.Text>Date :{element.date}</Card.Text>
+                      <Card.Text>
+                        Price :{element.price}
+                        <b>$</b>
+                      </Card.Text>
+
+                      <Button
+                        variant='primary'
+                        onClick={this.click}
+                        id={element._id}
+                      >
+                        Add Cart{' '}
+                      </Button>
+                    </Card.Body>
+                  </Card>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </CardGroup>
+        </div>
+        <div className='footer'>
+          <Footer />
         </div>
       </div>
     );

@@ -125,7 +125,7 @@ class LogIn extends React.Component {
             />{' '}
             <br />
             <Button variant='primary' type='submit' onClick={this.logIn}>
-              Submit
+              logIn
             </Button>
           </Form.Group>
         </div>

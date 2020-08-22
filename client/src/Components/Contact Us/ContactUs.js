@@ -33,11 +33,11 @@ var ContactUS = () => {
             placeholder='Your last name..'
           />
 
-          <label for='country'>Country</label>
+          <label for='country'>city</label>
           <select id='country' name='country'>
-            <option value='australia'>Australia</option>
-            <option value='canada'>Canada</option>
-            <option value='usa'>USA</option>
+            <option value='australia'>Middle Gaza</option>
+            <option value='canada'>North Gaza </option>
+            <option value='usa'>South Of Gaza </option>
           </select>
 
           <label for='subject'>Subject</label>

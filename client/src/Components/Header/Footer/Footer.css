@@ -1,0 +1,15 @@
+.main_footer {
+  color: black;
+  /* background-color: white; */
+  padding-top: 3em;
+  /* position: absolute; */
+  bottom: 0;
+
+  width: 100%;
+}
+h1,
+h4,
+li,
+div {
+  text-align: center;
+}

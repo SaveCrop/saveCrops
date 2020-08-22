@@ -11,6 +11,7 @@ import LogIn from '../Header/LogIn/Login';
 import AboutUs from '../AboutUs/AboutUs';
 import EditItem from '../Home/editItem';
 import ShowOrders from '../ShowOrders/ShowOrders';
+import LogOut from '../Header/LogOut/LogOut';
 
 var Header = () => {
   return (
@@ -27,6 +28,7 @@ var Header = () => {
         <Route exact path='/signUp' component={SignUp} />
         <Route exact path='/aboutUs' component={AboutUs} />
         <Route exact path='/edit/:id' component={EditItem} />
+        <Route exact path='/LogOut' component={LogOut} />
       </switch>
     </Router>
   );

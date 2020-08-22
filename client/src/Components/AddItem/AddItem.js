@@ -4,6 +4,7 @@ import swal from 'sweetalert';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import '../AddItem/addItems.css';
+import Image from '../uploadImg';
 
 class AddItem extends React.Component {
   state = {
@@ -12,15 +13,93 @@ class AddItem extends React.Component {
     date: 0,
     price: '',
     sell: false,
+    imageUrl: '',
+    imageAlt: '',
   };
+  componentDidMount() {
+    var phoneNumber = localStorage.getItem('phoneNumber');
+    if (!phoneNumber) {
+      alert('you are not login the oage pleas login');
+      this.props.history.push('/LogIn');
+    }
+  }
+
   handelChange = (e) => {
     e.preventDefault();
     this.setState({
       [e.target.name]: e.target.value,
     });
   };
-  submitValues = (e) => {
+  // submitValues = (e) => {
+  // e.preventDefault();
+  // if (
+  //   this.state.type.length == 0 ||
+  //   this.state.quantitey == 0 ||
+  //   this.state.price == 0
+  // ) {
+  //   swal('Wrong in Enter Items P.S try agin!');
+  // } else {
+  //   // this.setState({
+  //   //   phoneNumber: localStorage.getItem('phoneNumber'),
+  //   // });
+  //   // console.log('hhdahsdsadsadsadsa', localStorage.getItem('phoneNumber'));
+  //   var phoneNumbers = localStorage.getItem('phoneNumber');
+
+  //   axios
+  //     .post('/addItems', {
+  //       type: this.state.type,
+  //       quantitey: this.state.quantitey,
+  //       date: this.state.date,
+  //       price: this.state.price,
+  //       ID_Phone: phoneNumbers,
+  //       sell: this.state.sell,
+  //       imageUrl: this.state.imageUrl,
+  //     })
+
+  //     .then((result) => {
+  //       console.log('response from server in AddItems ! ', result);
+  //     })
+  //     .catch((error) => {
+  //       console.log('error from server that requsted via add items ', error);
+  //     });
+  //   // console.log('hhdahsdsadsadsadsa', localStorage.getItem('phoneNumber'));
+  //   swal('Sucess!');
+  //   this.setState({
+  //     type: '',
+  //     quantitey: '',
+  //     date: 0,
+  //     price: '',
+  //     sell: false,
+  //     imageUrl: '',
+  //     imageAlt: '',
+  //   });
+  // }
+  // };
+
+  /// this is the image upload
+  handleImageUpload = async (e) => {
     e.preventDefault();
+    const { files } = document.querySelector('input[type="file"]');
+    const formData = new FormData();
+    formData.append('file', files[0]);
+    formData.append('upload_preset', 'ml_default');
+    const options = {
+      method: 'POST',
+      body: formData,
+    };
+    let imageURL = '';
+    let ressss = await fetch(
+      'https://api.Cloudinary.com/v1_1/dwsig9tzx/image/upload',
+      options
+    );
+    let newres = await ressss.json();
+    imageURL = newres.secure_url;
+
+    this.setState({
+      imageUrl: imageURL,
+      imageAlt: `An image of `,
+    });
+
     if (
       this.state.type.length == 0 ||
       this.state.quantitey == 0 ||
@@ -28,11 +107,8 @@ class AddItem extends React.Component {
     ) {
       swal('Wrong in Enter Items P.S try agin!');
     } else {
-      // this.setState({
-      //   phoneNumber: localStorage.getItem('phoneNumber'),
-      // });
-      // console.log('hhdahsdsadsadsadsa', localStorage.getItem('phoneNumber'));
       var phoneNumbers = localStorage.getItem('phoneNumber');
+      console.log(this.state.imageUrl, 'image');
 
       axios
         .post('/addItems', {
@@ -42,6 +118,7 @@ class AddItem extends React.Component {
           price: this.state.price,
           ID_Phone: phoneNumbers,
           sell: this.state.sell,
+          imageUrl: this.state.imageUrl,
         })
 
         .then((result) => {
@@ -50,7 +127,6 @@ class AddItem extends React.Component {
         .catch((error) => {
           console.log('error from server that requsted via add items ', error);
         });
-      // console.log('hhdahsdsadsadsadsa', localStorage.getItem('phoneNumber'));
       swal('Sucess!');
       this.setState({
         type: '',
@@ -58,6 +134,8 @@ class AddItem extends React.Component {
         date: 0,
         price: '',
         sell: false,
+        imageUrl: '',
+        imageAlt: '',
       });
     }
   };
@@ -132,9 +210,26 @@ class AddItem extends React.Component {
             value={this.state.price}
           />{' '}
           <br />
-          <Button variant='primary' type='submit' onClick={this.submitValues}>
+          <main className='Image'>
+            <section className='left-side'>
+              <form>
+                <div className='form-group'>
+                  <input type='file' />
+                </div>
+                <Button
+                  type='button'
+                  className='btn'
+                  onClick={this.handleImageUpload}
+                  variant='primary'
+                >
+                  Submit
+                </Button>
+              </form>
+            </section>
+          </main>
+          {/* <Button variant='primary' type='submit' onClick={this.submitValues}>
             Submit
-          </Button>
+          </Button> */}
         </Form.Group>
       </div>
     );

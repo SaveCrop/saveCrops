@@ -3,6 +3,11 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import CardGroup from 'react-bootstrap/CardGroup';
+import Image from 'react-bootstrap/Image';
+import img from '../AboutUs/abd.jpg';
+
 // React.Bootstrap = require('react-bootstrap');
 // React.Bootstrap.Select = require('react-bootstrap-select');
 export default class AboutUs extends Component {
@@ -25,93 +30,42 @@ export default class AboutUs extends Component {
   render() {
     console.log(this.state);
     return (
-      <div className='addItem'>
-        <h1>ٍSign Up</h1>
-        <Form.Group>
-          <Form.Label>Fisrt and last name </Form.Label>
-          <Form.Control
-            size='lg'
-            type='text'
-            placeholder='name'
-            onChange={this.handelChange}
-            name='name'
-          />
-          <br />
-          <Form.Label>Enter phoneNumber</Form.Label>
-          <Form.Control
-            size='lg'
-            type='number'
-            placeholder='phoneNumber'
-            onChange={this.handelChange}
-            name='phoneNumber'
-          />{' '}
-          <br />
-          <Form.Label>Enter As farmer /User </Form.Label>
-          <select selected onChange={this.handelChange} name='role'>
-            <option value='role'>role</option>
-            <option value='farmer'>Farmers</option>
-            <option value='user'>User</option>
-          </select>
-          <br />
-          <br />
-          <Form.Label>Enter the password </Form.Label>
-          <Form.Control
-            size='lg'
-            type='number'
-            placeholder='password'
-            onChange={this.handelChange}
-            name='password'
-          />{' '}
-          {/* <select>
-            <option value='ads'>value</option>
-          </select> */}
-          <br />
-          <Button variant='primary' type='submit' onClick={this.registerData}>
-            Submit
-          </Button>
-        </Form.Group>
-
-        {/* <form>
-          <h3>Sign In</h3>
-
-          <div className='form-group'>
-            <label>Email address</label>
-            <input
-              type='email'
-              className='form-control'
-              placeholder='Enter phone Number'
-            />
-          </div>
-
-          <div className='form-group'>
-            <label>Password</label>
-            <input
-              type='password'
-              className='form-control'
-              placeholder='Enter password'
-            />
-          </div>
-
-          <div className='form-group'>
-            <div className='custom-control custom-checkbox'>
-              <input
-                type='checkbox'
-                className='custom-control-input'
-                id='customCheck1'
-              />
-              <label className='custom-control-label' htmlFor='customCheck1'>
-                Remember me
-              </label>
-            </div>
-          </div>
-
-          <button type='submit' className='btn btn-primary btn-block'>
-            Submit
-          </button>
-          <p className='forgot-password text-right'>
-            Forgot <a href='#'>password?</a>
+      <div>
+        <div class='about-section' style={{ margin: '50px' }}>
+          <h1>OVERVIEW</h1>
+          <p style={{ maxWidth: '1000px' }}>
+            Digital technologies and analytics are transforming agriculture,
+            making a farm’s field operations more insight driven and efficient.
+            Digital-based farm services are helping to improve financial
+            performance and boost yield. But less than 20 percent of acreage
+            today is managed using digital agriculture technologies (e.g.,
+            variable-rate spraying) due to the high cost of gathering precise
+            field data. To help farmers increase productivity and profitability,
+            Accenture has combined digital technologies such as the Internet of
+            Things with its big data analytics, visualization capabilities, and
+            industry knowledge to create the Accenture Precision Agriculture
+            Service and the Accenture Connected Crop Solution. Learn more about
+            these two innovative Digital Agriculture solutions below.
           </p>
-        </form> */}
+        </div>
+        <h4 style={{ marginBottom: '60px' }}> Team</h4>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Card style={{ width: '20rem' }}>
+            <Card.Img variant='top' src={img} />
+
+            <Card.Body>
+              <Card.Text>
+                <b>Abdelrhman AbuSamhadana</b>
+              </Card.Text>
+              <Card.Text>
+                <b>Software Enginner </b>
+              </Card.Text>
+              <Card.Text>
+                <b> CEO in Save Crops </b>
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </div>
       </div>
     );
   }

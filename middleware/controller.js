@@ -46,9 +46,9 @@ exports.SignUp = function (req, res) {
     });
 };
 exports.AddItems = function (req, res) {
-  const { type, quantitey, date, price, ID_Phone, sell } = req.body;
+  const { type, quantitey, date, price, ID_Phone, sell, imageUrl } = req.body;
   console.log(req.body);
-  var x = new Item({ type, quantitey, date, price, ID_Phone, sell });
+  var x = new Item({ type, quantitey, date, price, ID_Phone, sell, imageUrl });
   x.save()
     .then((result) => {
       res.send('Add Item is sucess');

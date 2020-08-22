@@ -45,30 +45,35 @@ var NavBar = () => {
             </Nav.Link>
             <Nav.Link href='/AddItems'>
               <button type='button' class='btn btn-light'>
-                AddItems
+                Add Product
               </button>
             </Nav.Link>
             <Nav.Link href='/showItem'>
               <button type='button' class='btn btn-light'>
-                Show item
+                Products
               </button>
             </Nav.Link>
             <Nav.Link href='/ShowOd'>
               <button type='button' class='btn btn-light'>
-                Show order{' '}
+                Orders{' '}
               </button>
             </Nav.Link>
             <Nav.Link href='/contact'>
               <button type='button' class='btn btn-light'>
-                contact
+                Contact Us
               </button>
             </Nav.Link>
             <Nav.Link href='/aboutUs'>
               <button type='button' class='btn btn-light'>
-                about us
+                About us
               </button>
             </Nav.Link>
           </Nav>
+          <Nav.Link href='/LogOut'>
+            <button type='button' class='btn btn-light'>
+              LogOut
+            </button>
+          </Nav.Link>
           <Form>
             <img src={img} width='150' height='100' className='img' />
           </Form>
