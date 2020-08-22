@@ -3,16 +3,21 @@ import axios from 'axios';
 import '../ShowOrders/ShowOrder.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BootstrapTable from 'react-bootstrap-table-next';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
+import Button from 'react-bootstrap/Button';
 const head = ['#', 'Type', 'Quantitey Kg', 'Date', 'Price $'];
 class ShowOrders extends React.Component {
   state = {
     elements: [],
     sumation: 0,
     name: '',
+    curentType: '',
+    filter: [],
   };
-  sumOfValue = () => {
+  sumOfValue = (prop) => {
     var arr = this.state.elements.map((item) => {
-      return item.price;
+      return item[prop];
     });
     var sum = arr.reduce((acc, prev) => {
       return acc + prev;
@@ -63,7 +68,37 @@ class ShowOrders extends React.Component {
       console.log(typeof element.date);
     });
   };
+  /////////////////////////////////////////////for Search Date ////////////////////////////
+  handelInput = (e) => {
+    var curentType = e.target.value;
+    this.setState({
+      curentType: curentType,
+    });
+    //
+    var fi = this.state.elements.filter((e) => {
+      return e.type === curentType;
+    });
+    // console.log(fi, 'the data filted ');
+    this.setState({
+      filter: fi,
+    });
+    console.log(this.state);
+  };
+
+  searchData = (e) => {
+    e.preventDefault();
+    this.setState({
+      elements: this.state.filter,
+    });
+    this.setState({
+      curentType: '',
+      filter: [],
+    });
+  };
+
+  ///////////////////////////////////
   render() {
+    console.log(this.state);
     return (
       <div>
         <h1> Orders</h1>
@@ -71,11 +106,35 @@ class ShowOrders extends React.Component {
           <b style={{ color: 'gray' }}>Welocme :</b>
           <b>{this.state.name} </b>{' '}
         </p>
+        <div className='searchData'>
+          <InputGroup className='mb-3'>
+            <FormControl
+              className='a'
+              onChange={this.handelInput}
+              placeholder='Search by type'
+              aria-label="Recipient's username"
+              aria-describedby='basic-addon2'
+              value={this.state.curentType}
+            />
+            <InputGroup.Append>
+              <Button
+                variant='outline-secondary'
+                onClick={this.searchData}
+                style={{ marginBottom: '60px' }}
+              >
+                Search
+              </Button>
+            </InputGroup.Append>
+          </InputGroup>
+        </div>
 
         <p>
           {' '}
           <b>Prices is : </b>
-          {this.sumOfValue() + '$'}
+          {this.sumOfValue('price') + '$' + '            '}
+          <b>Quantitey</b> is:
+          {this.sumOfValue('quantitey')}
+          <b> Kg</b>
         </p>
 
         <table class='table'>
@@ -93,7 +152,7 @@ class ShowOrders extends React.Component {
                   <td>{index}</td>
                   <td> {element.type}</td>
                   <td> {element.quantitey}</td>
-                  <td> {element.date}</td>
+                  <td> {element.date.substr(0, 10)}</td>
                   <td> {element.price}</td>
                 </tr>
               );
